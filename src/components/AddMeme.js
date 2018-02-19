@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
-// purely client side mutation to increment the meme number
+// purely client side mutation to increment the meme number (@client indicates a client side query)
 const AddMemeMutation = gql`
   mutation AddMeme {
     addMeme @client

@@ -13,7 +13,7 @@ const client = new ApolloClient(({
       Mutation: {
         // this mutation can do an arbitrary number of things inside this function
         // from a redux background, we can achieve updating the local store with `cache.writeData`
-        // from a saga perspective, we can execute arbitary code inside this function (async right now to show an example)
+        // from a saga perspective, the mutation name is the "topic", and we can execute arbitary code inside this function (even async code as the example is doing right now)
         addMeme: async (root, args, { cache }) => {
           const randomFetch = await axios.get('https://swapi.co/api/people/1');
           console.log(randomFetch);

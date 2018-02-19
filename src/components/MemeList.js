@@ -4,7 +4,6 @@ import gql from 'graphql-tag'
 import times from 'lodash.times';
 import Meme from './Meme';
 
-
 class MemeList extends Component {
   render() {
     const { data } = this.props;
@@ -13,10 +12,15 @@ class MemeList extends Component {
       return null;
     }
 
+    // construct a list of memes equal to
+    // the number of times a user has clicked the add meme button
+    // according to our local state
+    const memes = times(data.numMemes, (index) => <Meme key={index}/>);
+
     return (
       <div>
         {
-          times(data.numMemes, (index) => <Meme key={index}/>)
+          memes
         }
       </div>
     );
@@ -24,6 +28,7 @@ class MemeList extends Component {
 }
 
 
+// fetch the current number of memes expected, @client syntax indicates this is a local query
 const query = gql`
   query numMemes {
     numMemes @client
